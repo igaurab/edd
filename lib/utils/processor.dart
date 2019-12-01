@@ -5,7 +5,7 @@ class Processor {
   Processor() {
     converter = Converter();
   }
-  initializeProcessor({lastMensturalPeriod, todayDate}) {
+  void initializeProcessor({lastMensturalPeriod, todayDate}) {
     this.lastMensturalPeriod = lastMensturalPeriod;
     this.todayDate = todayDate;
   }
@@ -16,17 +16,16 @@ class Processor {
 
   void passValue() {
     converter.setValue(
-      LMPd: lastMensturalPeriod["lmpd"].toInt(),
-      LMPm: lastMensturalPeriod["lmpm"].toInt(),
-      LMPy: lastMensturalPeriod["lmpy"].toInt(),
-      TODAYd: todayDate["today_d"].toInt(),
-      TODAYm: todayDate["today_m"].toInt(),
-      TODAYy: todayDate["today_y"].toInt(),
+      LMPd: int.parse(lastMensturalPeriod["lmpd"]),
+      LMPm: int.parse(lastMensturalPeriod["lmpm"]),
+      LMPy: int.parse(lastMensturalPeriod["lmpy"]),
+      TODAYd: int.parse(todayDate["today_d"]),
+      TODAYm: int.parse(todayDate["today_m"]),
+      TODAYy: int.parse(todayDate["today_y"]),
     );
   }
 
   Result getResult() {
-    Result result = Result();
     result = converter.calculateResult();
     return result;
   }

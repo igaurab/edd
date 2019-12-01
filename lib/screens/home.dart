@@ -1,5 +1,8 @@
+import 'package:edd_by_date_calculator/screens/result.dart';
+import 'package:edd_by_date_calculator/utils/processor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:page_transition/page_transition.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -50,11 +53,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 RaisedButton(
                   color: Colors.blueAccent,
                   onPressed: () {
-                    if (_fbKey.currentState.saveAndValidate()) {
-                      print(_fbKey.currentState.value);
-                    }
-                    if (_todayKey.currentState.saveAndValidate()) {
-                      print(_todayKey.currentState.value);
+                    if (_fbKey.currentState.saveAndValidate() &&
+                        _todayKey.currentState.saveAndValidate()) {
+                      processor.initializeProcessor(
+                          lastMensturalPeriod: _fbKey.currentState.value,
+                          todayDate: _todayKey.currentState.value);
+                      processor.passValue();
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                              type: PageTransitionType.fade, child: Result()));
                     }
                   },
                   child: Text(

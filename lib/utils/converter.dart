@@ -1,8 +1,7 @@
 import 'package:edd_by_date_calculator/utils/result.dart';
 
 class Converter {
-
-  setValue() {
+  setValue({LMPd, LMPm, LMPy, TODAYd, TODAYm, TODAYy}) {
     this.LMPd = LMPd;
     this.LMPm = LMPm;
     this.LMPy = LMPy;
