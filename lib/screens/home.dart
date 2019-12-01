@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
-final GlobalKey<FormBuilderState> _todayKey = GlobalKey<FormBuilderState>();
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
 
-class HomeScreen extends StatelessWidget {
+class _HomeScreenState extends State<HomeScreen> {
+  GlobalKey<FormBuilderState> _fbKey;
+  GlobalKey<FormBuilderState> _todayKey;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _fbKey = GlobalKey<FormBuilderState>();
+    _todayKey = GlobalKey<FormBuilderState>();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,30 +34,36 @@ class HomeScreen extends StatelessWidget {
       body: Container(
         child: Padding(
           padding: EdgeInsets.all(15.0),
-          child: Column(
-            children: <Widget>[
-              text("Last Menstural Period"),
-              lastMentrualPeriodDatePicker(),
-              SizedBox(
-                height: 30.0,
-              ),
-              text("Today's Date"),
-              todayDatePicker(),
-              SizedBox(
-                height: 30.0,
-              ),
-              RaisedButton(
-                color: Colors.blueAccent,
-                onPressed: () {
-                  print(_fbKey.currentState.value);
-                  print(_todayKey.currentState.value);
-                },
-                child: Text(
-                  "Submit",
-                  style: TextStyle(color: Colors.white),
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                text("Last Menstural Period"),
+                lastMentrualPeriodDatePicker(key: _fbKey),
+                SizedBox(
+                  height: 30.0,
                 ),
-              ),
-            ],
+                text("Today's Date"),
+                todayDatePicker(key: _todayKey),
+                SizedBox(
+                  height: 30.0,
+                ),
+                RaisedButton(
+                  color: Colors.blueAccent,
+                  onPressed: () {
+                    if (_fbKey.currentState.saveAndValidate()) {
+                      print(_fbKey.currentState.value);
+                    }
+                    if (_todayKey.currentState.saveAndValidate()) {
+                      print(_todayKey.currentState.value);
+                    }
+                  },
+                  child: Text(
+                    "Submit",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -60,14 +79,15 @@ Widget text(String str) {
   );
 }
 
-Widget lastMentrualPeriodDatePicker() {
+Widget lastMentrualPeriodDatePicker({key}) {
   return Row(
     mainAxisSize: MainAxisSize.min,
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: <Widget>[
       Expanded(
         child: FormBuilder(
-          key: _fbKey,
+          key: key,
+          autovalidate: true,
           child: Column(
             children: <Widget>[
               FormBuilderTextField(
@@ -76,8 +96,8 @@ Widget lastMentrualPeriodDatePicker() {
                 decoration: InputDecoration(labelText: "Year"),
                 validators: [
                   FormBuilderValidators.numeric(),
-                  FormBuilderValidators.max(4),
-                  FormBuilderValidators.min(2),
+                  FormBuilderValidators.maxLength(4),
+                  FormBuilderValidators.minLength(2),
                 ],
               ),
               FormBuilderTextField(
@@ -86,8 +106,8 @@ Widget lastMentrualPeriodDatePicker() {
                 decoration: InputDecoration(labelText: "Month"),
                 validators: [
                   FormBuilderValidators.numeric(),
-                  FormBuilderValidators.max(2),
-                  FormBuilderValidators.min(1),
+                  FormBuilderValidators.maxLength(2),
+                  FormBuilderValidators.minLength(1),
                 ],
               ),
               FormBuilderTextField(
@@ -96,8 +116,8 @@ Widget lastMentrualPeriodDatePicker() {
                 decoration: InputDecoration(labelText: "Day"),
                 validators: [
                   FormBuilderValidators.numeric(),
-                  FormBuilderValidators.max(2),
-                  FormBuilderValidators.min(1),
+                  FormBuilderValidators.maxLength(2),
+                  FormBuilderValidators.maxLength(1),
                 ],
               ),
             ],
@@ -108,14 +128,14 @@ Widget lastMentrualPeriodDatePicker() {
   );
 }
 
-Widget todayDatePicker() {
+Widget todayDatePicker({key}) {
   return Row(
     mainAxisSize: MainAxisSize.min,
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: <Widget>[
       Expanded(
         child: FormBuilder(
-          key: _todayKey,
+          key: key,
           child: Column(
             children: <Widget>[
               FormBuilderTextField(
@@ -124,8 +144,8 @@ Widget todayDatePicker() {
                 decoration: InputDecoration(labelText: "Year"),
                 validators: [
                   FormBuilderValidators.numeric(),
-                  FormBuilderValidators.max(4),
-                  FormBuilderValidators.min(1),
+                  FormBuilderValidators.maxLength(4),
+                  FormBuilderValidators.minLength(1),
                 ],
               ),
               FormBuilderTextField(
@@ -134,8 +154,8 @@ Widget todayDatePicker() {
                 decoration: InputDecoration(labelText: "Month"),
                 validators: [
                   FormBuilderValidators.numeric(),
-                  FormBuilderValidators.max(2),
-                  FormBuilderValidators.min(1),
+                  FormBuilderValidators.maxLength(2),
+                  FormBuilderValidators.minLength(1),
                 ],
               ),
               FormBuilderTextField(
@@ -144,8 +164,8 @@ Widget todayDatePicker() {
                 decoration: InputDecoration(labelText: "Day"),
                 validators: [
                   FormBuilderValidators.numeric(),
-                  FormBuilderValidators.max(2),
-                  FormBuilderValidators.min(1),
+                  FormBuilderValidators.maxLength(2),
+                  FormBuilderValidators.minLength(1),
                 ],
               ),
             ],
