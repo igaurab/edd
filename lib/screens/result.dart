@@ -8,6 +8,19 @@ class Result extends StatefulWidget {
 class _ResultState extends State<Result> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Column(
+        children: <Widget>[
+          
+        ],
+      ),
+    );
   }
 }
+
+//  print("NoOfDays $NoOfDays");
+//     print("ByDated $BYDATEd");
+//     print("ByDatem $BYDATEm");
+//     print("NoOfWeeks $NoOfWeeks");
+//     print("Remainder $Remainder");
+//   }

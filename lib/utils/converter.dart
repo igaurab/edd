@@ -1,6 +1,16 @@
+import 'package:edd_by_date_calculator/utils/result.dart';
+
 class Converter {
-  Converter(
-      {this.LMPd, this.LMPm, this.LMPy, this.TODAYd, this.TODAYm, this.TODAYy});
+
+  setValue() {
+    this.LMPd = LMPd;
+    this.LMPm = LMPm;
+    this.LMPy = LMPy;
+
+    this.TODAYd = TODAYd;
+    this.TODAYm = TODAYm;
+    this.TODAYy = TODAYy;
+  }
 
   int LMPy;
   int LMPm;
@@ -75,36 +85,6 @@ class Converter {
   }
 }
 
-class Result {
-  Result(
-      {this.BYDATEd,
-      this.BYDATEm,
-      this.EDDd,
-      this.EDDm,
-      this.EDDy,
-      this.NoOfDays,
-      this.NoOfWeeks,
-      this.Remainder});
-
-  int EDDy;
-  int EDDm;
-  int EDDd;
-
-  int BYDATEd;
-  int BYDATEm;
-
-  int NoOfDays;
-  int NoOfWeeks;
-  int Remainder;
-
-  void printResult() {
-    print("NoOfDays $NoOfDays");
-    print("ByDated $BYDATEd");
-    print("ByDatem $BYDATEm");
-    print("NoOfWeeks $NoOfWeeks");
-    print("Remainder $Remainder");
-  }
-}
 // # print ("BYDATE IS", BYDATEm, BYDATEd)
 
 // print ("LMP is ", LMPy, LMPm, LMPd)
@@ -114,9 +94,9 @@ class Result {
 
 // print ("EDD is", EDDy, EDDm, EDDd)
 
-void main() {
-  var converter = Converter(
-      LMPd: 12, LMPm: 12, LMPy: 2075, TODAYd: 13, TODAYm: 08, TODAYy: 2076);
-  Result result = converter.calculateResult();
-  result.printResult();
-}
+// void main() {
+//   var converter = Converter(
+//       LMPd: 12, LMPm: 12, LMPy: 2075, TODAYd: 13, TODAYm: 08, TODAYy: 2076);
+//   Result result = converter.calculateResult();
+//   result.printResult();
+// }
