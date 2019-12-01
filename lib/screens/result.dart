@@ -21,6 +21,7 @@ class _ResultState extends State<Result> {
     return Scaffold(
       body: Column(
         children: <Widget>[
+         
           Text(
             _class.result.BYDATEd.toString(),
           ),
