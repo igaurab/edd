@@ -25,9 +25,12 @@ class _ResultState extends State<Result> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Center(
+        child: Container(
+          height: double.maxFinite,
           child: Column(
             mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Row(
                 children: <Widget>[
@@ -35,7 +38,7 @@ class _ResultState extends State<Result> {
                     "EDD: ",
                     style: TextStyle(
                         fontSize: 30.0,
-                        color: Colors.black,
+                        color: Colors.grey,
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
@@ -73,6 +76,25 @@ class _ResultState extends State<Result> {
                     ),
                   ),
                 ],
+              ),
+              Spacer(),
+              SizedBox(
+                width: double.maxFinite,
+                height: 50.0,
+                child: RaisedButton(
+                  color: Colors.blueAccent,
+                  child: Text(
+                    "Back",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 1.1),
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
               ),
             ],
           ),
