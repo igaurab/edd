@@ -1,3 +1,6 @@
+import 'package:edd_by_date_calculator/screens/drawer/aboutus.dart';
+import 'package:edd_by_date_calculator/screens/drawer/disclaimer.dart';
+import 'package:edd_by_date_calculator/screens/drawer/usefulInfo.dart';
 import 'package:edd_by_date_calculator/screens/result.dart';
 import 'package:edd_by_date_calculator/utils/processor.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +16,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   GlobalKey<FormBuilderState> _fbKey;
   GlobalKey<FormBuilderState> _todayKey;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   SharedPreferences sharedPreferences;
   final String YEAR = 'year';
   final String MONTH = 'month';
@@ -58,6 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text(
           "Period of Gestation Calculator",
@@ -67,7 +72,17 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
         elevation: 0.0,
         backgroundColor: Colors.transparent,
+        leading: IconButton(
+          icon: Icon(
+            Icons.menu,
+            color: Colors.black,
+          ),
+          onPressed: () {
+            _scaffoldKey.currentState.openDrawer();
+          },
+        ),
       ),
+      drawer: createDrawer(),
       body: Container(
         child: Padding(
           padding: EdgeInsets.all(15.0),
@@ -119,6 +134,53 @@ class _HomeScreenState extends State<HomeScreen> {
     sharedPreferences.setInt(DAY, int.parse(todayDate['today_d']));
   }
 
+  Drawer createDrawer() {
+    return Drawer(
+      child: ListView(
+        children: <Widget>[
+          DrawerHeader(
+              child: Text(
+                "POG Calculator",
+                style: TextStyle(
+                    fontSize: 26.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+              decoration: BoxDecoration(
+                color: Colors.blueAccent,
+              )),
+          ListTile(
+            title: Text('About us'),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  PageTransition(
+                      type: PageTransitionType.fade, child: AboutUs()));
+            },
+          ),
+          ListTile(
+            title: Text('Useful Info'),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  PageTransition(
+                      type: PageTransitionType.fade, child: UsefulInfo()));
+            },
+          ),
+          ListTile(
+            title: Text('Disclaimer'),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  PageTransition(
+                      type: PageTransitionType.fade, child: Disclaimer()));
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget text(String str) {
     return Text(
       str,
@@ -145,7 +207,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   validators: [
                     FormBuilderValidators.numeric(),
                     FormBuilderValidators.maxLength(4),
-                    FormBuilderValidators.minLength(2),
+                    FormBuilderValidators.minLength(1),
                   ],
                 ),
                 FormBuilderTextField(
@@ -165,6 +227,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   validators: [
                     FormBuilderValidators.numeric(),
                     FormBuilderValidators.maxLength(2),
+                    FormBuilderValidators.minLength(1),
                   ],
                 ),
               ],
