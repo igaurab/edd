@@ -51,6 +51,9 @@ class Converter {
       BYDATEm = TODAYnewm - LMPm;
     }
     NoOfDays = BYDATEm * 30 + BYDATEd;
+    if (NoOfDays > 245){
+      NoOfDays = NoOfDays + 3;
+    }
     NoOfWeeks = (NoOfDays / 7).toInt();
     Remainder = NoOfDays % 7;
 

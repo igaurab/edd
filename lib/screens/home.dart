@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Edd By Date",
+          "Period of Gestation Calculator",
           style: TextStyle(
               color: Colors.black, fontWeight: FontWeight.w600, fontSize: 20.0),
         ),
@@ -125,7 +125,6 @@ Widget lastMentrualPeriodDatePicker({key}) {
                 validators: [
                   FormBuilderValidators.numeric(),
                   FormBuilderValidators.maxLength(2),
-                  FormBuilderValidators.maxLength(1),
                 ],
               ),
             ],

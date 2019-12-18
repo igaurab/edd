@@ -19,22 +19,64 @@ class _ResultState extends State<Result> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: <Widget>[
-         
-          Text(
-            _class.result.BYDATEd.toString(),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("Results"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Text(
+                    "EDD: ",
+                    style: TextStyle(
+                        fontSize: 30.0,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    _class.result.EDDy.toString() +
+                        " - " +
+                        _class.result.EDDm.toString() +
+                        " - " +
+                        _class.result.EDDd.toString(),
+                    style: TextStyle(
+                        fontSize: 30.0,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Text(
+                    "POG: ",
+                    style: TextStyle(
+                        fontSize: 32.0,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Expanded(
+                    child: Text(
+                      _class.result.NoOfWeeks.toString() +
+                          " weeks " +
+                          _class.result.Remainder.toString() +
+                          " days",
+                      style: TextStyle(
+                          fontSize: 32.0,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
-          Text(
-            _class.result.BYDATEm.toString(),
-          ),
-          Text(
-            _class.result.NoOfDays.toString(),
-          ),
-          Text(
-            _class.result.NoOfWeeks.toString(),
-          ),
-        ],
+        ),
       ),
     );
   }
