@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 
 class Disclaimer extends StatelessWidget {
   final String text1 =
-      "This App calculates POG by subtracting LMP from Today's date. The result so obtained in month and days is converted into days and then into weeks. Other methods commonly used by obstetricians like counting 13 weeks for every 3 months may give different result. Considerations need to be taken";
+      "This App calculates POG by subtracting LMP from Today's date. The result so obtained in month and days is converted into days and then into weeks. Other methods commonly used by obstetricians like counting 4 weeks for every month and 13 weeks for every 3 months may give different result and is less accurate. Considerations need to be taken";
   final String text2 =
       "This App is made for educational purposes. This App may not be relied upon for the purposes of medical diagnosis or treatment. The information on this App is not a substitute for professional medical advice, diagnosis or treatment.";
   @override
