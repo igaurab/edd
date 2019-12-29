@@ -24,13 +24,13 @@ class AboutUs extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
-              child: Text("Developed by Gaurab Panthee"),
+              child: Text("Developed by Shailesh Panthee"),
             ),
             SizedBox(
               height: 10.0,
             ),
             Container(
-              child: Text("Contact: gaurabpanthee@gmail.com"),
+              child: Text("Contact: shaileshpanthee@gmail.com"),
             ),
           ],
         ),
