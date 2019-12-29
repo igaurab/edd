@@ -1,8 +1,8 @@
-import 'package:edd_by_date_calculator/screens/drawer/aboutus.dart';
-import 'package:edd_by_date_calculator/screens/drawer/disclaimer.dart';
-import 'package:edd_by_date_calculator/screens/drawer/usefulInfo.dart';
-import 'package:edd_by_date_calculator/screens/result.dart';
-import 'package:edd_by_date_calculator/utils/processor.dart';
+import 'package:obgyn_complete/screens/drawer/aboutus.dart';
+import 'package:obgyn_complete/screens/drawer/disclaimer.dart';
+import 'package:obgyn_complete/screens/drawer/usefulInfo.dart';
+import 'package:obgyn_complete/screens/result.dart';
+import 'package:obgyn_complete/utils/processor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:page_transition/page_transition.dart';

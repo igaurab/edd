@@ -1,4 +1,4 @@
-import 'package:edd_by_date_calculator/utils/result.dart';
+import 'package:obgyn_complete/utils/result.dart';
 
 class Converter {
   setValue({LMPd, LMPm, LMPy, TODAYd, TODAYm, TODAYy}) {
@@ -51,7 +51,7 @@ class Converter {
       BYDATEm = TODAYnewm - LMPm;
     }
     NoOfDays = BYDATEm * 30 + BYDATEd;
-    if (NoOfDays > 245){
+    if (NoOfDays > 245) {
       NoOfDays = NoOfDays + 3;
     }
     NoOfWeeks = (NoOfDays / 7).toInt();

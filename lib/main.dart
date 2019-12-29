@@ -1,5 +1,5 @@
-import 'package:edd_by_date_calculator/screens/home.dart';
-import 'package:edd_by_date_calculator/screens/trailend.dart';
+import 'package:obgyn_complete/screens/home.dart';
+import 'package:obgyn_complete/screens/trailend.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return now.year == 2019
+    return (now.year == 2019 /*&& (now.month == 1 || now.month == 2)*/)
         ? MaterialApp(
             debugShowCheckedModeBanner: false,
             home: HomeScreen(),

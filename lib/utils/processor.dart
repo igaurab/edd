@@ -1,5 +1,5 @@
-import 'package:edd_by_date_calculator/utils/result.dart';
-import 'package:edd_by_date_calculator/utils/converter.dart';
+import 'package:obgyn_complete/utils/result.dart';
+import 'package:obgyn_complete/utils/converter.dart';
 
 class Processor {
   Processor() {

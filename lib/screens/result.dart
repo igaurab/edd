@@ -1,5 +1,5 @@
-import 'package:edd_by_date_calculator/utils/processor.dart';
-import 'package:edd_by_date_calculator/utils/result.dart' as _class;
+import 'package:obgyn_complete/utils/processor.dart';
+import 'package:obgyn_complete/utils/result.dart' as _class;
 import 'package:flutter/material.dart';
 
 class Result extends StatefulWidget {
