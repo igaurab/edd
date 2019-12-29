@@ -140,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: <Widget>[
           DrawerHeader(
               child: Text(
-                "POG Calculator",
+                "ObGyn Complete",
                 style: TextStyle(
                     fontSize: 26.0,
                     fontWeight: FontWeight.bold,

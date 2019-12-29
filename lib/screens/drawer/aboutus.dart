@@ -32,6 +32,10 @@ class AboutUs extends StatelessWidget {
             Container(
               child: Text("Contact: shaileshpanthee@gmail.com"),
             ),
+            Text(
+                "Are you happy with the app? You can encourage app developers by making a donation of any amount via esewa or khalti. \n"),
+            Text("esewa: +977-9843315186"),
+            Text("khalti: +977-9813851438"),
           ],
         ),
       ),

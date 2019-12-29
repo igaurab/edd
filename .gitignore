@@ -29,6 +29,8 @@
 .pub/
 /build/
 
+#Release releated
+**/android/key.propertiesR
 # Android related
 **/android/**/gradle-wrapper.jar
 **/android/.gradle

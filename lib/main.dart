@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return (now.year == 2019 /*&& (now.month == 1 || now.month == 2)*/)
+    return (now.year == 2020 && (now.month == 1 || now.month == 2))
         ? MaterialApp(
             debugShowCheckedModeBanner: false,
             home: HomeScreen(),

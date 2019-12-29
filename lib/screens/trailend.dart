@@ -26,9 +26,7 @@ class _TrailEndScreenState extends State<TrailEndScreen> {
                   style: TextStyle(color: Colors.redAccent),
                 ),
                 Text(
-                    "Please support app developers by purchasing the application\n"),
-                Text(
-                    "For the price of a cup of coffee, you can use the app for 3 months."),
+                    "Please support app developers by purchasing the application.\n"),
               ],
             ),
           ),

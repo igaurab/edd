@@ -49,7 +49,7 @@ class _ResultState extends State<Result> {
                     "EDD: ",
                     style: TextStyle(
                         fontSize: 30.0,
-                        color: Colors.grey,
+                        color: Colors.black,
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
