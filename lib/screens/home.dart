@@ -1,5 +1,7 @@
+import 'package:nepali_date_picker/nepali_date_picker.dart';
 import 'package:obgyn_complete/screens/drawer/aboutus.dart';
 import 'package:obgyn_complete/screens/drawer/disclaimer.dart';
+import 'package:obgyn_complete/screens/drawer/donate.dart';
 import 'package:obgyn_complete/screens/drawer/usefulInfo.dart';
 import 'package:obgyn_complete/screens/result.dart';
 import 'package:obgyn_complete/utils/processor.dart';
@@ -30,29 +32,32 @@ class _HomeScreenState extends State<HomeScreen> {
   TextEditingController tmonth;
   TextEditingController tday;
 
+  NepaliDateTime _selectedDateTime = NepaliDateTime.now();
+  bool showTodayDate = false;
   @override
   void initState() {
     super.initState();
+    initialize();
+  }
 
+  void initialize() async {
     _fbKey = GlobalKey<FormBuilderState>();
     _todayKey = GlobalKey<FormBuilderState>();
 
     tyear = TextEditingController();
     tmonth = TextEditingController();
     tday = TextEditingController();
-    initialize();
-  }
 
-  void initialize() async {
     sharedPreferences = await SharedPreferences.getInstance();
-
     year = sharedPreferences.getInt(YEAR);
     month = sharedPreferences.getInt(MONTH);
     day = sharedPreferences.getInt(DAY);
 
-    tyear.text = year == null ? "" : year.toString();
-    tmonth.text = month == null ? "" : month.toString();
-    tday.text = day == null ? "" : day.toString();
+    tyear.text =
+        year == null ? _selectedDateTime.year.toString() : year.toString();
+    tmonth.text =
+        month == null ? _selectedDateTime.month.toString() : month.toString();
+    tday.text = day == null ? _selectedDateTime.day.toString() : day.toString();
 
     print(year.toString());
     print(month.toString());
@@ -81,6 +86,27 @@ class _HomeScreenState extends State<HomeScreen> {
             _scaffoldKey.currentState.openDrawer();
           },
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.calendar_today,
+              color: Colors.black,
+            ),
+            onPressed: () async {
+              _selectedDateTime = await showMaterialDatePicker(
+                context: context,
+                initialDate: NepaliDateTime.now(),
+                firstDate: NepaliDateTime(2000),
+                lastDate: NepaliDateTime(2090),
+              );
+              setState(() {
+                tyear.text = _selectedDateTime.year.toString();
+                tmonth.text = _selectedDateTime.month.toString();
+                tday.text = _selectedDateTime.day.toString();
+              });
+            },
+          )
+        ],
       ),
       drawer: createDrawer(),
       body: Container(
@@ -88,13 +114,28 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: EdgeInsets.all(15.0),
           child: SingleChildScrollView(
             child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 text("Last Menstural Period"),
                 lastMentrualPeriodDatePicker(key: _fbKey),
                 SizedBox(
                   height: 30.0,
                 ),
-                text("Today's Date"),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    text("Today's Date"),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          showTodayDate = !showTodayDate;
+                        });
+                      },
+                      child: showTodayDate ? Text("Hide") : Text("Show"),
+                    )
+                  ],
+                ),
                 todayDatePicker(key: _todayKey),
                 SizedBox(
                   height: 30.0,
@@ -176,6 +217,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       type: PageTransitionType.fade, child: Disclaimer()));
             },
           ),
+          ListTile(
+            title: Text('Donate'),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  PageTransition(
+                      type: PageTransitionType.fade, child: Donate()));
+            },
+          ),
         ],
       ),
     );
@@ -239,53 +289,57 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget todayDatePicker({key}) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Expanded(
-          child: FormBuilder(
-            key: key,
-            child: Column(
-              children: <Widget>[
-                FormBuilderTextField(
-                  controller: tyear,
-                  maxLines: 1,
-                  attribute: "today_y",
-                  decoration: InputDecoration(labelText: "Year"),
-                  validators: [
-                    FormBuilderValidators.numeric(),
-                    FormBuilderValidators.maxLength(4),
-                    FormBuilderValidators.minLength(1),
-                  ],
-                ),
-                FormBuilderTextField(
-                  controller: tmonth,
-                  maxLines: 1,
-                  attribute: "today_m",
-                  decoration: InputDecoration(labelText: "Month"),
-                  validators: [
-                    FormBuilderValidators.numeric(),
-                    FormBuilderValidators.maxLength(2),
-                    FormBuilderValidators.minLength(1),
-                  ],
-                ),
-                FormBuilderTextField(
-                  controller: tday,
-                  maxLines: 1,
-                  attribute: "today_d",
-                  decoration: InputDecoration(labelText: "Day"),
-                  validators: [
-                    FormBuilderValidators.numeric(),
-                    FormBuilderValidators.maxLength(2),
-                    FormBuilderValidators.minLength(1),
-                  ],
-                ),
-              ],
+    // initialize();
+    return Opacity(
+      opacity: showTodayDate ? 1.0 : 0.0,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Expanded(
+            child: FormBuilder(
+              key: key,
+              child: Column(
+                children: <Widget>[
+                  FormBuilderTextField(
+                    controller: tyear,
+                    maxLines: 1,
+                    attribute: "today_y",
+                    decoration: InputDecoration(labelText: "Year"),
+                    validators: [
+                      FormBuilderValidators.numeric(),
+                      FormBuilderValidators.maxLength(4),
+                      FormBuilderValidators.minLength(1),
+                    ],
+                  ),
+                  FormBuilderTextField(
+                    controller: tmonth,
+                    maxLines: 1,
+                    attribute: "today_m",
+                    decoration: InputDecoration(labelText: "Month"),
+                    validators: [
+                      FormBuilderValidators.numeric(),
+                      FormBuilderValidators.maxLength(2),
+                      FormBuilderValidators.minLength(1),
+                    ],
+                  ),
+                  FormBuilderTextField(
+                    controller: tday,
+                    maxLines: 1,
+                    attribute: "today_d",
+                    decoration: InputDecoration(labelText: "Day"),
+                    validators: [
+                      FormBuilderValidators.numeric(),
+                      FormBuilderValidators.maxLength(2),
+                      FormBuilderValidators.minLength(1),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 }
