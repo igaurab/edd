@@ -19,18 +19,19 @@ class AboutUs extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
       ),
-      body: Center(
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Container(
-              child: Text("Developed by Shailesh Panthee"),
-            ),
+            Text("Developed by Gaurab Panthee and Shailesh Panthee"),
             SizedBox(
               height: 10.0,
             ),
-            Container(
-              child: Text("Contact: shaileshpanthee@gmail.com"),
+            Text("Contact: pantheedevelopers@gmail.com"),
+            SizedBox(
+              height: 10.0,
             ),
             Text(
                 "Are you happy with the app? You can encourage app developers by making a donation of any amount via esewa or khalti. \n"),
