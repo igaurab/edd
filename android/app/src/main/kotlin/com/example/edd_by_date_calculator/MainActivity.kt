@@ -1,4 +1,4 @@
-package com.example.obgyn_complete
+package com.igaurab.obgyn_complete
 
 import android.os.Bundle
 
