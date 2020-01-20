@@ -20,14 +20,17 @@ class Donate extends StatelessWidget {
         elevation: 0.0,
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-                "Are you happy with the app? You can encourage app developers by making a donation of any amount via esewa or khalti. \n"),
-            Text("esewa: +977-9843315186"),
-            Text("khalti: +977-9813851438"),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                  "Are you happy with the app? You can encourage app developers by making a donation of any amount via esewa or khalti. \n"),
+              Text("esewa: +977-9843315186"),
+              Text("khalti: +977-9813851438"),
+            ],
+          ),
         ),
       ),
     );

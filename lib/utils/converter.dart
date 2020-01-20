@@ -35,6 +35,10 @@ class Converter {
   var LMPnewm;
 
   Result calculateResult() {
+    if (LMPd > 30) {
+      LMPd = 30;
+    }
+
     if (TODAYd < LMPd) {
       TODAYnewd = TODAYd + 30;
       BYDATEd = TODAYnewd - LMPd;

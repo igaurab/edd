@@ -8,7 +8,6 @@ import 'package:obgyn_complete/utils/processor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -19,21 +18,16 @@ class _HomeScreenState extends State<HomeScreen> {
   GlobalKey<FormBuilderState> _fbKey;
   GlobalKey<FormBuilderState> _todayKey;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  SharedPreferences sharedPreferences;
   final String YEAR = 'year';
   final String MONTH = 'month';
   final String DAY = 'day';
-
-  int year;
-  int month;
-  int day;
 
   TextEditingController tyear;
   TextEditingController tmonth;
   TextEditingController tday;
 
   NepaliDateTime _selectedDateTime = NepaliDateTime.now();
-  bool showTodayDate = false;
+  // bool showTodayDate = false;
   @override
   void initState() {
     super.initState();
@@ -48,20 +42,9 @@ class _HomeScreenState extends State<HomeScreen> {
     tmonth = TextEditingController();
     tday = TextEditingController();
 
-    sharedPreferences = await SharedPreferences.getInstance();
-    year = sharedPreferences.getInt(YEAR);
-    month = sharedPreferences.getInt(MONTH);
-    day = sharedPreferences.getInt(DAY);
-
-    tyear.text =
-        year == null ? _selectedDateTime.year.toString() : year.toString();
-    tmonth.text =
-        month == null ? _selectedDateTime.month.toString() : month.toString();
-    tday.text = day == null ? _selectedDateTime.day.toString() : day.toString();
-
-    print(year.toString());
-    print(month.toString());
-    print(day.toString());
+    tyear.text = _selectedDateTime.year.toString();
+    tmonth.text = _selectedDateTime.month.toString();
+    tday.text = _selectedDateTime.day.toString();
   }
 
   @override
@@ -126,14 +109,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     text("Today's Date"),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          showTodayDate = !showTodayDate;
-                        });
-                      },
-                      child: showTodayDate ? Text("Hide") : Text("Show"),
-                    )
+                    // GestureDetector(
+                    //   onTap: () {
+                    //     setState(() {
+                    //       showTodayDate = !showTodayDate;
+                    //     });
+                    //   },
+                    //   child: showTodayDate ? Text("Hide") : Text("Show"),
+                    // )
                   ],
                 ),
                 todayDatePicker(key: _todayKey),
@@ -145,7 +128,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   onPressed: () {
                     if (_fbKey.currentState.saveAndValidate() &&
                         _todayKey.currentState.saveAndValidate()) {
-                      saveCurrentDateInSharedPref(_todayKey.currentState.value);
                       processor.initializeProcessor(
                           lastMensturalPeriod: _fbKey.currentState.value,
                           todayDate: _todayKey.currentState.value);
@@ -167,12 +149,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
-  }
-
-  void saveCurrentDateInSharedPref(Map<String, dynamic> todayDate) {
-    sharedPreferences.setInt(YEAR, int.parse(todayDate['today_y']));
-    sharedPreferences.setInt(MONTH, int.parse(todayDate['today_m']));
-    sharedPreferences.setInt(DAY, int.parse(todayDate['today_d']));
   }
 
   Drawer createDrawer() {
@@ -291,7 +267,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget todayDatePicker({key}) {
     // initialize();
     return Opacity(
-      opacity: showTodayDate ? 1.0 : 0.0,
+      opacity: /*showTodayDate*/ 1.0,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
