@@ -223,38 +223,35 @@ class _HomeScreenState extends State<HomeScreen> {
         Expanded(
           child: FormBuilder(
             key: key,
-            autovalidate: true,
+            autovalidateMode: AutovalidateMode.always,
             child: Column(
               children: <Widget>[
                 FormBuilderTextField(
                   maxLines: 1,
-                  attribute: "lmpy",
+                  name: "lmpy",
                   decoration: InputDecoration(labelText: "Year"),
-                  validators: [
-                    FormBuilderValidators.numeric(),
-                    FormBuilderValidators.maxLength(4),
-                    FormBuilderValidators.minLength(1),
-                  ],
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.numeric(context),
+                    FormBuilderValidators.maxLength(context, 4),
+                  ]),
                 ),
                 FormBuilderTextField(
                   maxLines: 1,
-                  attribute: "lmpm",
+                  name: "lmpm",
                   decoration: InputDecoration(labelText: "Month"),
-                  validators: [
-                    FormBuilderValidators.numeric(),
-                    FormBuilderValidators.maxLength(2),
-                    FormBuilderValidators.minLength(1),
-                  ],
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.numeric(context),
+                    FormBuilderValidators.maxLength(context, 2),
+                  ]),
                 ),
                 FormBuilderTextField(
                   maxLines: 1,
-                  attribute: "lmpd",
+                  name: "lmpd",
                   decoration: InputDecoration(labelText: "Day"),
-                  validators: [
-                    FormBuilderValidators.numeric(),
-                    FormBuilderValidators.maxLength(2),
-                    FormBuilderValidators.minLength(1),
-                  ],
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.numeric(context),
+                    FormBuilderValidators.maxLength(context, 2),
+                  ]),
                 ),
               ],
             ),
@@ -280,35 +277,32 @@ class _HomeScreenState extends State<HomeScreen> {
                   FormBuilderTextField(
                     controller: tyear,
                     maxLines: 1,
-                    attribute: "today_y",
+                    name: "today_y",
                     decoration: InputDecoration(labelText: "Year"),
-                    validators: [
-                      FormBuilderValidators.numeric(),
-                      FormBuilderValidators.maxLength(4),
-                      FormBuilderValidators.minLength(1),
-                    ],
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.numeric(context),
+                      FormBuilderValidators.maxLength(context, 4),
+                    ]),
                   ),
                   FormBuilderTextField(
                     controller: tmonth,
                     maxLines: 1,
-                    attribute: "today_m",
+                    name: "today_m",
                     decoration: InputDecoration(labelText: "Month"),
-                    validators: [
-                      FormBuilderValidators.numeric(),
-                      FormBuilderValidators.maxLength(2),
-                      FormBuilderValidators.minLength(1),
-                    ],
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.numeric(context),
+                      FormBuilderValidators.maxLength(context, 2),
+                    ]),
                   ),
                   FormBuilderTextField(
                     controller: tday,
                     maxLines: 1,
-                    attribute: "today_d",
+                    name: "today_d",
                     decoration: InputDecoration(labelText: "Day"),
-                    validators: [
-                      FormBuilderValidators.numeric(),
-                      FormBuilderValidators.maxLength(2),
-                      FormBuilderValidators.minLength(1),
-                    ],
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.numeric(context),
+                      FormBuilderValidators.maxLength(context, 2),
+                    ]),
                   ),
                 ],
               ),
